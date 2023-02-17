@@ -7,17 +7,35 @@ public class LevelManager : MonoBehaviour
     CameraScript cs;
     // odleg³oœæ spawnowania w pionie i poziomie od œrodka gry
     float verticalDistance, horizontalDistance;
+    //licznik do nastêpnego spawnu
+    float spawnTimer = 0;
+    //co ile ma nastêpowaæ spawn
+    public float spawnInterval = 5;
+    //prefab kamulca
+    public GameObject asteroidPrefab;
+
 
     // Start is called before the first frame update
     void Start()
     {
         cs = Camera.main.GetComponent<CameraScript>();
+;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        spawnTimer += Time.deltaTime;
+        if(spawnTimer > spawnInterval)
+        {
+            //spawnujemy kamieñ
+            Vector3 spawnPosition = getRandomSpawnPosition();
+            Debug.Log("Spawnuje kamulec na wspó³rzêdnych: " + spawnPosition.ToString());
+            GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
+
+            //resetujemy timer
+            spawnTimer = 0;
+        }
     }
     Vector3 getRandomSpawnPosition()
     {
