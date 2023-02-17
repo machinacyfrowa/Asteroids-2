@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
         {
             //spawnujemy kamieñ
             Vector3 spawnPosition = getRandomSpawnPosition();
-            Debug.Log("Spawnuje kamulec na wspó³rzêdnych: " + spawnPosition.ToString());
+            //Debug.Log("Spawnuje kamulec na wspó³rzêdnych: " + spawnPosition.ToString());
             GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
 
             //resetujemy timer
